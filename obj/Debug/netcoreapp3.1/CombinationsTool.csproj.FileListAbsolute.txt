@@ -12,4 +12,3 @@ C:\Users\Pichau\source\repos\CombinationsTool\CombinationsTool\obj\Debug\netcore
 C:\Users\Pichau\source\repos\CombinationsTool\CombinationsTool\obj\Debug\netcoreapp3.1\CombinationsTool.dll
 C:\Users\Pichau\source\repos\CombinationsTool\CombinationsTool\obj\Debug\netcoreapp3.1\CombinationsTool.pdb
 C:\Users\Pichau\source\repos\CombinationsTool\CombinationsTool\obj\Debug\netcoreapp3.1\CombinationsTool.genruntimeconfig.cache
-C:\Users\Pichau\source\repos\CombinationsTool\CombinationsTool\obj\Debug\netcoreapp3.1\CombinationsTool.csproj.AssemblyReference.cache

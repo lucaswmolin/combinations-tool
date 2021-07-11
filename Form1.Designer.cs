@@ -190,11 +190,10 @@ namespace CombinationsTool
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "Combinations Tool by LWMolin (v. 2021.07.11.1)";
+            this.Text = "Combinations Tool by LWMolin (v. 2021.07.11.2)";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion

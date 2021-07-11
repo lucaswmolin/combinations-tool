@@ -10,7 +10,6 @@ namespace CombinationsTool
 {
     public partial class MainForm : Form
     {
-        private static ConcurrentBag<List<float>> allCombinations = new ConcurrentBag<List<float>>();
         private static ConcurrentBag<List<string>> lResult = new ConcurrentBag<List<string>>();
 
         public MainForm()
@@ -27,8 +26,8 @@ namespace CombinationsTool
 
                 clean();
 
-                string[] strValues = tbValues.Text.Split(",");
-                string[] strCategories = tbCategories.Text.Split(",");
+                string[] strValues = tbValues.Text.Split(";");
+                string[] strCategories = tbCategories.Text.Split(";");
                 float fFSum = float.Parse(tbFinalSum.Text);
 
                 List<float> fValues = new List<float>();
@@ -36,6 +35,8 @@ namespace CombinationsTool
                 {
                     fValues.Add(float.Parse(strValues[i]) + ((float)i + 1) / 100000);
                 }
+
+                lbAllCombinations.Text = Math.Truncate(GetCombinationsNumber(fValues.Count)).ToString() + " combinações";
 
                 List<string> fCategories = new List<string>();
                 for (int i = 0; i < strCategories.Length; i++)
@@ -65,16 +66,15 @@ namespace CombinationsTool
                     lbTime.Text = "T: " + stopwatch.ElapsedMilliseconds.ToString() + " ms";
                 }
 
-                if (lResult.Count <= 999)
+                int rCount = lbResult.Items.Count / 3;
+                if (rCount <= 999)
                 {
-                    lbResultCount.Text = String.Format("{0:0000}", lResult.Count);
+                    lbResultCount.Text = String.Format("{0:0000}", rCount);
                 }
                 else
                 {
                     lbResultCount.Text = "+999";
                 }
-
-                lbAllCombinations.Text = allCombinations.Count.ToString() + " combinações";
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message);
             }       
@@ -97,8 +97,6 @@ namespace CombinationsTool
             lbWritingTime.Text = String.Empty;
             lbTime.Text = String.Empty;
             tbValues.Focus();
-
-            allCombinations.Clear();
             lResult.Clear();
         }
 
@@ -110,8 +108,34 @@ namespace CombinationsTool
             lbWritingTime.Text = String.Empty;
             lbTime.Text = String.Empty;
             lbResult.Items.Clear();
-            allCombinations.Clear();
             lResult.Clear();
+        }
+
+        double Fatorial(double n)
+        {
+            double f = 1;
+            for (int i = 1; i <= n; i++)
+            {
+                f *= i;
+            }
+
+            return f;
+        }
+
+        double GetCombinationsPartialNumber(int n, int p)
+        {
+            return (Fatorial(n)) / (Fatorial(p) * Fatorial(n - p));
+        }
+
+        double GetCombinationsNumber(int n)
+        {
+            double s = 0;
+            for (int p = 1; p <= n; p++)
+            {
+                s += GetCombinationsPartialNumber(n, p);
+            }
+
+            return s;
         }
 
         List<string> FormatList(List<float> combination, List<float> allValues, List<string> categories)
@@ -121,7 +145,7 @@ namespace CombinationsTool
             string fdValues = "In: ";
             foreach (float f in combination)
             {
-                fdValues += string.Format("{0:N2}", f) + " (" + FindCategory(f, allValues, categories) + "), ";
+                fdValues += string.Format("{0:N2}", f) + " (" + FindCategory(f, allValues, categories) + "); ";
             }
 
             fdValues = fdValues.Substring(0, fdValues.Length - 2);
@@ -143,7 +167,7 @@ namespace CombinationsTool
 
                 if (!found)
                 {
-                    nfValues += string.Format("{0:N2}", allValues[i]) + " (" + FindCategory(allValues[i], allValues, categories) + "), ";
+                    nfValues += string.Format("{0:N2}", allValues[i]) + " (" + FindCategory(allValues[i], allValues, categories) + "); ";
                 }
             }
 
@@ -173,36 +197,22 @@ namespace CombinationsTool
             return String.Empty;
         }
 
-        void Calculate(List<List<float>> combinations, List<float> values, List<string> categories, float total)
+        void GenerateCombinations(float[] arr, int n, int r, int index, float[] data, int i, List<float> values, List<string> categories, float total)
         {
-            for (int i = 0; i < combinations.Count; i++)
+            if (index == r)
             {
                 float vSum = 0;
-                foreach (float n in combinations[i])
+                for (int j = 0; j < r; j++)
                 {
-                    vSum += n;
+                    vSum += data[j];
                 }
 
                 if (Math.Round(vSum, 2) == Math.Round(total, 2))
                 {
-                    List<string> combination = FormatList(combinations[i], values, categories);
+                    List<string> combination = FormatList(data.ToList<float>(), values, categories);
 
                     lResult.Add(combination);
                 }
-            }
-        }
-
-        void GenerateCombinations(float[] arr, int n, int r, int index, float[] data, int i)
-        {
-            if (index == r)
-            {
-                List<float> combination = new List<float>();
-                for (int j = 0; j < r; j++)
-                {
-                    combination.Add(data[j]);
-                }
-
-                allCombinations.Add(combination);
 
                 return;
             }
@@ -214,18 +224,18 @@ namespace CombinationsTool
 
             data[index] = arr[i];
 
-            GenerateCombinations(arr, n, r, index + 1, data, i + 1);
+            GenerateCombinations(arr, n, r, index + 1, data, i + 1, values, categories, total);
 
-            GenerateCombinations(arr, n, r, index, data, i + 1);
+            GenerateCombinations(arr, n, r, index, data, i + 1, values, categories, total);
         }
 
-        void GetCombinations(float[] arr, int n, List<int> lSize)
+        void GetCombinations(float[] arr, int n, List<int> lSize, List<float> values, List<string> categories, float total)
         {
             foreach (int r in lSize)
             {
                 float[] data = new float[r];
 
-                GenerateCombinations(arr, n, r, 0, data, 0);
+                GenerateCombinations(arr, n, r, 0, data, 0, values, categories, total);
             }
         }
 
@@ -249,7 +259,7 @@ namespace CombinationsTool
                     id += cpu;
                 }
 
-                Thread thread = new Thread(() => GetCombinations(arr, n, lSize));
+                Thread thread = new Thread(() => GetCombinations(arr, n, lSize, fValues, fCategories, fFSum));
                 kThread.Add(thread);
             }
 
@@ -259,45 +269,6 @@ namespace CombinationsTool
             }
 
             foreach (Thread t in kThread)
-            {
-                t.Join();
-            }
-
-            var combinations = allCombinations.ToList();
-
-            int interval = combinations.Count / cpu;
-            int residue = combinations.Count % cpu;
-
-            int mn = 0;
-            int mx = interval;
-
-            List<Thread> lThread = new List<Thread>();
-            for (int i = 0; i < cpu; i++)
-            {
-                if (i == (cpu - 1))
-                {
-                    mx += residue;
-                }
-
-                List<List<float>> subCombinations = new List<List<float>>();
-                for (int j = mn; j < mx; j++)
-                {
-                    subCombinations.Add(combinations[j]);
-                }
-
-                mn += interval;
-                mx += interval;
-
-                Thread thread = new Thread(() => Calculate(subCombinations, fValues, fCategories, fFSum));
-                lThread.Add(thread);
-            }
-
-            foreach (Thread t in lThread)
-            {
-                t.Start();
-            }
-
-            foreach (Thread t in lThread)
             {
                 t.Join();
             }
@@ -324,9 +295,11 @@ namespace CombinationsTool
                         lbResult.Items.Add(sl);
                     }
                 }
+
+                lResult.Clear();
             } else
             {
-                lbResult.Items.Add("Nenhuma combinação foi encontrada.");
+                lbResult.Items.Add("Nenhuma combinação cujo somatório seja igual a " + fFSum.ToString() + " foi encontrada.");
             }
 
             if (writingClock.ElapsedMilliseconds >= 60000)
