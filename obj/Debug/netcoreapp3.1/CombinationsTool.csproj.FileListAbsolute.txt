@@ -1,0 +1,15 @@
+C:\Users\Pichau\source\repos\CombinationsTool\CombinationsTool\bin\Debug\netcoreapp3.1\CombinationsTool.exe
+C:\Users\Pichau\source\repos\CombinationsTool\CombinationsTool\bin\Debug\netcoreapp3.1\CombinationsTool.deps.json
+C:\Users\Pichau\source\repos\CombinationsTool\CombinationsTool\bin\Debug\netcoreapp3.1\CombinationsTool.runtimeconfig.json
+C:\Users\Pichau\source\repos\CombinationsTool\CombinationsTool\bin\Debug\netcoreapp3.1\CombinationsTool.runtimeconfig.dev.json
+C:\Users\Pichau\source\repos\CombinationsTool\CombinationsTool\bin\Debug\netcoreapp3.1\CombinationsTool.dll
+C:\Users\Pichau\source\repos\CombinationsTool\CombinationsTool\bin\Debug\netcoreapp3.1\CombinationsTool.pdb
+C:\Users\Pichau\source\repos\CombinationsTool\CombinationsTool\obj\Debug\netcoreapp3.1\CombinationsTool.MainForm.resources
+C:\Users\Pichau\source\repos\CombinationsTool\CombinationsTool\obj\Debug\netcoreapp3.1\CombinationsTool.csproj.GenerateResource.cache
+C:\Users\Pichau\source\repos\CombinationsTool\CombinationsTool\obj\Debug\netcoreapp3.1\CombinationsTool.AssemblyInfoInputs.cache
+C:\Users\Pichau\source\repos\CombinationsTool\CombinationsTool\obj\Debug\netcoreapp3.1\CombinationsTool.AssemblyInfo.cs
+C:\Users\Pichau\source\repos\CombinationsTool\CombinationsTool\obj\Debug\netcoreapp3.1\CombinationsTool.csproj.CoreCompileInputs.cache
+C:\Users\Pichau\source\repos\CombinationsTool\CombinationsTool\obj\Debug\netcoreapp3.1\CombinationsTool.dll
+C:\Users\Pichau\source\repos\CombinationsTool\CombinationsTool\obj\Debug\netcoreapp3.1\CombinationsTool.pdb
+C:\Users\Pichau\source\repos\CombinationsTool\CombinationsTool\obj\Debug\netcoreapp3.1\CombinationsTool.genruntimeconfig.cache
+C:\Users\Pichau\source\repos\CombinationsTool\CombinationsTool\obj\Debug\netcoreapp3.1\CombinationsTool.csproj.AssemblyReference.cache
