@@ -4,7 +4,6 @@ C:\Users\Pichau\source\repos\CombinationsTool\CombinationsTool\bin\Release\netco
 C:\Users\Pichau\source\repos\CombinationsTool\CombinationsTool\bin\Release\netcoreapp3.1\CombinationsTool.runtimeconfig.dev.json
 C:\Users\Pichau\source\repos\CombinationsTool\CombinationsTool\bin\Release\netcoreapp3.1\CombinationsTool.dll
 C:\Users\Pichau\source\repos\CombinationsTool\CombinationsTool\bin\Release\netcoreapp3.1\CombinationsTool.pdb
-C:\Users\Pichau\source\repos\CombinationsTool\CombinationsTool\obj\Release\netcoreapp3.1\CombinationsTool.csproj.AssemblyReference.cache
 C:\Users\Pichau\source\repos\CombinationsTool\CombinationsTool\obj\Release\netcoreapp3.1\CombinationsTool.MainForm.resources
 C:\Users\Pichau\source\repos\CombinationsTool\CombinationsTool\obj\Release\netcoreapp3.1\CombinationsTool.csproj.GenerateResource.cache
 C:\Users\Pichau\source\repos\CombinationsTool\CombinationsTool\obj\Release\netcoreapp3.1\CombinationsTool.AssemblyInfoInputs.cache

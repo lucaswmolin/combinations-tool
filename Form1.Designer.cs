@@ -42,9 +42,7 @@ namespace CombinationsTool
             this.lbTime = new System.Windows.Forms.Label();
             this.lbCombinationsTime = new System.Windows.Forms.Label();
             this.lbWritingTime = new System.Windows.Forms.Label();
-            this.lbThreads = new System.Windows.Forms.Label();
             this.lbAllCombinations = new System.Windows.Forms.Label();
-            this.cbThreads = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lbValues
@@ -68,7 +66,7 @@ namespace CombinationsTool
             // lbFinalSum
             // 
             this.lbFinalSum.AutoSize = true;
-            this.lbFinalSum.Location = new System.Drawing.Point(804, 9);
+            this.lbFinalSum.Location = new System.Drawing.Point(672, 9);
             this.lbFinalSum.Name = "lbFinalSum";
             this.lbFinalSum.Size = new System.Drawing.Size(118, 15);
             this.lbFinalSum.TabIndex = 2;
@@ -78,28 +76,28 @@ namespace CombinationsTool
             // 
             this.tbValues.Location = new System.Drawing.Point(12, 27);
             this.tbValues.Name = "tbValues";
-            this.tbValues.Size = new System.Drawing.Size(786, 23);
+            this.tbValues.Size = new System.Drawing.Size(654, 23);
             this.tbValues.TabIndex = 3;
             // 
             // tbCategories
             // 
             this.tbCategories.Location = new System.Drawing.Point(12, 71);
             this.tbCategories.Name = "tbCategories";
-            this.tbCategories.Size = new System.Drawing.Size(786, 23);
+            this.tbCategories.Size = new System.Drawing.Size(654, 23);
             this.tbCategories.TabIndex = 4;
             // 
             // tbFinalSum
             // 
-            this.tbFinalSum.Location = new System.Drawing.Point(804, 27);
+            this.tbFinalSum.Location = new System.Drawing.Point(672, 27);
             this.tbFinalSum.Name = "tbFinalSum";
-            this.tbFinalSum.Size = new System.Drawing.Size(183, 23);
+            this.tbFinalSum.Size = new System.Drawing.Size(126, 23);
             this.tbFinalSum.TabIndex = 5;
             // 
             // btCalculate
             // 
-            this.btCalculate.Location = new System.Drawing.Point(899, 100);
+            this.btCalculate.Location = new System.Drawing.Point(672, 56);
             this.btCalculate.Name = "btCalculate";
-            this.btCalculate.Size = new System.Drawing.Size(88, 24);
+            this.btCalculate.Size = new System.Drawing.Size(126, 24);
             this.btCalculate.TabIndex = 6;
             this.btCalculate.Text = "Calcular";
             this.btCalculate.UseVisualStyleBackColor = true;
@@ -108,16 +106,17 @@ namespace CombinationsTool
             // lbResult
             // 
             this.lbResult.FormattingEnabled = true;
+            this.lbResult.HorizontalScrollbar = true;
             this.lbResult.ItemHeight = 15;
-            this.lbResult.Location = new System.Drawing.Point(12, 131);
+            this.lbResult.Location = new System.Drawing.Point(12, 116);
             this.lbResult.Name = "lbResult";
-            this.lbResult.Size = new System.Drawing.Size(975, 319);
+            this.lbResult.Size = new System.Drawing.Size(786, 334);
             this.lbResult.TabIndex = 7;
             // 
             // lbResultCount
             // 
             this.lbResultCount.AutoSize = true;
-            this.lbResultCount.Location = new System.Drawing.Point(956, 453);
+            this.lbResultCount.Location = new System.Drawing.Point(767, 453);
             this.lbResultCount.Name = "lbResultCount";
             this.lbResultCount.Size = new System.Drawing.Size(31, 15);
             this.lbResultCount.TabIndex = 9;
@@ -125,9 +124,9 @@ namespace CombinationsTool
             // 
             // btClean
             // 
-            this.btClean.Location = new System.Drawing.Point(804, 100);
+            this.btClean.Location = new System.Drawing.Point(672, 86);
             this.btClean.Name = "btClean";
-            this.btClean.Size = new System.Drawing.Size(89, 24);
+            this.btClean.Size = new System.Drawing.Size(126, 24);
             this.btClean.TabIndex = 10;
             this.btClean.Text = "Apagar";
             this.btClean.UseVisualStyleBackColor = true;
@@ -136,64 +135,45 @@ namespace CombinationsTool
             // lbTime
             // 
             this.lbTime.AutoSize = true;
-            this.lbTime.Location = new System.Drawing.Point(199, 453);
+            this.lbTime.Location = new System.Drawing.Point(14, 453);
             this.lbTime.Name = "lbTime";
-            this.lbTime.Size = new System.Drawing.Size(76, 15);
+            this.lbTime.Size = new System.Drawing.Size(61, 15);
             this.lbTime.TabIndex = 11;
-            this.lbTime.Text = "T: 00:00:00:00";
+            this.lbTime.Text = "T: 00:00:00";
             // 
             // lbCombinationsTime
             // 
             this.lbCombinationsTime.AutoSize = true;
-            this.lbCombinationsTime.Location = new System.Drawing.Point(12, 453);
+            this.lbCombinationsTime.Location = new System.Drawing.Point(81, 453);
             this.lbCombinationsTime.Name = "lbCombinationsTime";
-            this.lbCombinationsTime.Size = new System.Drawing.Size(78, 15);
+            this.lbCombinationsTime.Size = new System.Drawing.Size(63, 15);
             this.lbCombinationsTime.TabIndex = 13;
-            this.lbCombinationsTime.Text = "C: 00:00:00:00";
+            this.lbCombinationsTime.Text = "C: 00:00:00";
             // 
             // lbWritingTime
             // 
             this.lbWritingTime.AutoSize = true;
-            this.lbWritingTime.Location = new System.Drawing.Point(105, 453);
+            this.lbWritingTime.Location = new System.Drawing.Point(150, 453);
             this.lbWritingTime.Name = "lbWritingTime";
-            this.lbWritingTime.Size = new System.Drawing.Size(76, 15);
+            this.lbWritingTime.Size = new System.Drawing.Size(61, 15);
             this.lbWritingTime.TabIndex = 15;
-            this.lbWritingTime.Text = "E: 00:00:00:00";
-            // 
-            // lbThreads
-            // 
-            this.lbThreads.AutoSize = true;
-            this.lbThreads.Location = new System.Drawing.Point(804, 53);
-            this.lbThreads.Name = "lbThreads";
-            this.lbThreads.Size = new System.Drawing.Size(130, 15);
-            this.lbThreads.TabIndex = 16;
-            this.lbThreads.Text = "Quantidade de threads:";
+            this.lbWritingTime.Text = "E: 00:00:00";
             // 
             // lbAllCombinations
             // 
             this.lbAllCombinations.AutoSize = true;
-            this.lbAllCombinations.Location = new System.Drawing.Point(12, 106);
+            this.lbAllCombinations.Location = new System.Drawing.Point(12, 97);
             this.lbAllCombinations.Name = "lbAllCombinations";
             this.lbAllCombinations.Size = new System.Drawing.Size(79, 15);
             this.lbAllCombinations.TabIndex = 18;
             this.lbAllCombinations.Text = "000000000000";
             // 
-            // cbThreads
-            // 
-            this.cbThreads.FormattingEnabled = true;
-            this.cbThreads.Location = new System.Drawing.Point(804, 71);
-            this.cbThreads.Name = "cbThreads";
-            this.cbThreads.Size = new System.Drawing.Size(183, 23);
-            this.cbThreads.TabIndex = 19;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(999, 473);
-            this.Controls.Add(this.cbThreads);
+            this.ClientSize = new System.Drawing.Size(811, 473);
             this.Controls.Add(this.lbAllCombinations);
-            this.Controls.Add(this.lbThreads);
             this.Controls.Add(this.lbWritingTime);
             this.Controls.Add(this.lbCombinationsTime);
             this.Controls.Add(this.lbTime);
@@ -207,9 +187,10 @@ namespace CombinationsTool
             this.Controls.Add(this.lbFinalSum);
             this.Controls.Add(this.lbCategories);
             this.Controls.Add(this.lbValues);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "Combinations Tool by LWMolin (v. 2021.07.10.1)";
+            this.Text = "Combinations Tool by LWMolin (v. 2021.07.11.1)";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -231,9 +212,7 @@ namespace CombinationsTool
         private System.Windows.Forms.Label lbTime;
         private System.Windows.Forms.Label lbCombinationsTime;
         private System.Windows.Forms.Label lbWritingTime;
-        private System.Windows.Forms.Label lbThreads;
         private System.Windows.Forms.Label lbAllCombinations;
-        private System.Windows.Forms.ComboBox cbThreads;
     }
 }
 

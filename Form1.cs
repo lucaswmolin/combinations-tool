@@ -1,24 +1,17 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CombinationsTool
 {
     public partial class MainForm : Form
     {
-        private static Semaphore semaphore1;
-        private static Semaphore semaphore2;
-
-        private static List<List<float>> allCombinations = new List<List<float>>();
-        private static List<List<string>> lResult = new List<List<string>>();
+        private static ConcurrentBag<List<float>> allCombinations = new ConcurrentBag<List<float>>();
+        private static ConcurrentBag<List<string>> lResult = new ConcurrentBag<List<string>>();
 
         public MainForm()
         {
@@ -29,11 +22,59 @@ namespace CombinationsTool
         {
             try
             {
+                var stopwatch = new Stopwatch();
+                stopwatch.Start();
+
                 clean();
 
-                int cpu = Int32.Parse(cbThreads.SelectedItem.ToString());
+                string[] strValues = tbValues.Text.Split(",");
+                string[] strCategories = tbCategories.Text.Split(",");
+                float fFSum = float.Parse(tbFinalSum.Text);
 
-                Run(tbValues.Text, tbFinalSum.Text, tbCategories.Text, cpu);
+                List<float> fValues = new List<float>();
+                for (int i = 0; i < strValues.Length; i++)
+                {
+                    fValues.Add(float.Parse(strValues[i]) + ((float)i + 1) / 100000);
+                }
+
+                List<string> fCategories = new List<string>();
+                for (int i = 0; i < strCategories.Length; i++)
+                {
+                    fCategories.Add(strCategories[i]);
+                }
+
+                if (tbCategories.Text.Length > 0) {
+                    if (fValues.Count != fCategories.Count)
+                    {
+                        throw new Exception("Erro: a quantidade de valores e categorias está diferente.");
+                    }
+                }
+
+                int cpu = Environment.ProcessorCount;
+
+                Run(fValues, fCategories, fFSum, cpu);
+
+                stopwatch.Stop();
+
+                if (stopwatch.ElapsedMilliseconds >= 60000)
+                {
+                    TimeSpan ts = TimeSpan.FromMilliseconds(stopwatch.ElapsedMilliseconds);
+                    lbTime.Text = "T: " + ts.ToString(@"mm\:ss");
+                } else
+                {
+                    lbTime.Text = "T: " + stopwatch.ElapsedMilliseconds.ToString() + " ms";
+                }
+
+                if (lResult.Count <= 999)
+                {
+                    lbResultCount.Text = String.Format("{0:0000}", lResult.Count);
+                }
+                else
+                {
+                    lbResultCount.Text = "+999";
+                }
+
+                lbAllCombinations.Text = allCombinations.Count.ToString() + " combinações";
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message);
             }       
@@ -106,7 +147,9 @@ namespace CombinationsTool
                 }
             }
 
-            nfValues = nfValues.Substring(0, nfValues.Length - 2);
+            if (nfValues.Length > 5) {
+                nfValues = nfValues.Substring(0, nfValues.Length - 2);
+            }
 
             result.Add(nfValues);
 
@@ -144,11 +187,7 @@ namespace CombinationsTool
                 {
                     List<string> combination = FormatList(combinations[i], values, categories);
 
-                    semaphore2.WaitOne();
-
                     lResult.Add(combination);
-
-                    semaphore2.Release();
                 }
             }
         }
@@ -163,11 +202,7 @@ namespace CombinationsTool
                     combination.Add(data[j]);
                 }
 
-                semaphore1.WaitOne();
-
                 allCombinations.Add(combination);
-
-                semaphore1.Release();
 
                 return;
             }
@@ -194,32 +229,10 @@ namespace CombinationsTool
             }
         }
 
-        void Run(string values, string finalSum, string categories, int cpu)
+        void Run(List<float> fValues, List<string> fCategories, float fFSum, int cpu)
         {       
-            var stopwatch = new Stopwatch();
-            stopwatch.Start();
-
-            string[] strValues = values.Split(",");
-            string[] strCategories = categories.Split(",");
-            float fFSum = float.Parse(finalSum);
-
-            List<float> fValues = new List<float>();
-            for (int i = 0; i < strValues.Length; i++)
-            {
-                fValues.Add(float.Parse(strValues[i]) + ((float)i + 1) / 100000);
-            }
-
-            List<string> fCategories = new List<string>();
-            for (int i = 0; i < strCategories.Length; i++)
-            {
-                fCategories.Add(strCategories[i]);
-            }
-
-
             var combinationsClock = new Stopwatch();
             combinationsClock.Start();
-
-            semaphore1 = new Semaphore(1, 1);
 
             float[] arr = fValues.ToArray();
             int n = arr.Length;
@@ -250,17 +263,13 @@ namespace CombinationsTool
                 t.Join();
             }
 
-            lbAllCombinations.Text = allCombinations.Count.ToString();
-
-            var combinations = allCombinations;
+            var combinations = allCombinations.ToList();
 
             int interval = combinations.Count / cpu;
             int residue = combinations.Count % cpu;
 
             int mn = 0;
             int mx = interval;
-
-            semaphore2 = new Semaphore(1, 1);
 
             List<Thread> lThread = new List<Thread>();
             for (int i = 0; i < cpu; i++)
@@ -293,10 +302,15 @@ namespace CombinationsTool
                 t.Join();
             }
 
-            combinationsClock.Stop();
-
-            TimeSpan combinationsTime = TimeSpan.FromMilliseconds(combinationsClock.ElapsedMilliseconds);
-            lbCombinationsTime.Text = "C: " + combinationsTime.ToString(@"hh\:mm\:ss\:ms");
+            if (combinationsClock.ElapsedMilliseconds >= 60000)
+            {
+                TimeSpan combinationsTime = TimeSpan.FromMilliseconds(combinationsClock.ElapsedMilliseconds);
+                lbCombinationsTime.Text = "C: " + combinationsTime.ToString(@"mm\:ss");
+            }
+            else
+            {
+                lbCombinationsTime.Text = "C: " + combinationsClock.ElapsedMilliseconds.ToString() + " ms";
+            }
 
 
             var writingClock = new Stopwatch();
@@ -315,33 +329,20 @@ namespace CombinationsTool
                 lbResult.Items.Add("Nenhuma combinação foi encontrada.");
             }
 
-            writingClock.Stop();
-
-            TimeSpan writingTime = TimeSpan.FromMilliseconds(writingClock.ElapsedMilliseconds);
-            lbWritingTime.Text = "E: " + writingTime.ToString(@"hh\:mm\:ss\:ms");
-
-
-            stopwatch.Stop();
-
-            TimeSpan ts = TimeSpan.FromMilliseconds(stopwatch.ElapsedMilliseconds);
-            lbTime.Text = "T: " + ts.ToString(@"hh\:mm\:ss\:ms");
-
-            if (lResult.Count <= 999){
-                lbResultCount.Text = String.Format("{0:0000}", lResult.Count);
-            } else
+            if (writingClock.ElapsedMilliseconds >= 60000)
             {
-                lbResultCount.Text = "+999";
+                TimeSpan writingTime = TimeSpan.FromMilliseconds(writingClock.ElapsedMilliseconds);
+                lbWritingTime.Text = "E: " + writingTime.ToString(@"mm\:ss");
+            }
+            else
+            {
+                lbWritingTime.Text = "E: " + writingClock.ElapsedMilliseconds.ToString() + " ms";
             }
         }
 
         void MainForm_Load(object sender, EventArgs e)
         {
             cleanAll();
-
-            for (int i = 1; i <= Environment.ProcessorCount; i++)
-            {
-                cbThreads.Items.Add(i.ToString());
-            }
         }
     }
 }
