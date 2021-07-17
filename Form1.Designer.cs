@@ -43,6 +43,7 @@ namespace CombinationsTool
             this.lbCombinationsTime = new System.Windows.Forms.Label();
             this.lbWritingTime = new System.Windows.Forms.Label();
             this.lbAllCombinations = new System.Windows.Forms.Label();
+            this.lbEstimatedTime = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbValues
@@ -168,11 +169,21 @@ namespace CombinationsTool
             this.lbAllCombinations.TabIndex = 18;
             this.lbAllCombinations.Text = "000000000000";
             // 
+            // lbEstimatedTime
+            // 
+            this.lbEstimatedTime.AutoSize = true;
+            this.lbEstimatedTime.Location = new System.Drawing.Point(196, 97);
+            this.lbEstimatedTime.Name = "lbEstimatedTime";
+            this.lbEstimatedTime.Size = new System.Drawing.Size(79, 15);
+            this.lbEstimatedTime.TabIndex = 19;
+            this.lbEstimatedTime.Text = "000000000000";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(811, 473);
+            this.Controls.Add(this.lbEstimatedTime);
             this.Controls.Add(this.lbAllCombinations);
             this.Controls.Add(this.lbWritingTime);
             this.Controls.Add(this.lbCombinationsTime);
@@ -190,10 +201,11 @@ namespace CombinationsTool
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "Combinations Tool by LWMolin (v. 2021.07.11.2)";
+            this.Text = "Combinations Tool by LWMolin (v. 2021.07.17.1)";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
@@ -212,6 +224,7 @@ namespace CombinationsTool
         private System.Windows.Forms.Label lbCombinationsTime;
         private System.Windows.Forms.Label lbWritingTime;
         private System.Windows.Forms.Label lbAllCombinations;
+        private System.Windows.Forms.Label lbEstimatedTime;
     }
 }
 

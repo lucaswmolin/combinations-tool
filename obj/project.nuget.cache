@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "mircoTlZ3aXptPzolIQqPVHwiYtKs2NX2kCM1Ysm5IwgXddyLKSqlWrX0FoYk+5RKmbnIK4w0RJWuQsPVKF2tg==",
+  "dgSpecHash": "Jkwlwqd626UQ41tP+Lv3zmMeCwKgqFGTE3aAyXn9qs392VXG1MosJnBDHCuig0VW1WuxhsBp+Feit/4snETGrA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Pichau\\source\\repos\\CombinationsTool\\CombinationsTool\\CombinationsTool.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Pichau\\.nuget\\packages\\mathnet.numerics\\4.15.0\\mathnet.numerics.4.15.0.nupkg.sha512"
+  ],
   "logs": []
 }
