@@ -45,4 +45,5 @@ Out: 173 (D4); 189 (D4); 514 (F7); 649 (F7); 786 (F7); 732 (D4); 214 (F7); 241 (
 O programa também mostra a quantidade total de combinações verificadas, o tempo de execução estimado (CE), a quantidade de resultados encontrados, o tempo total de execução (T), o tempo gasto para o processamento de todas as combinações (C) e o tempo gasto para a escrita do resultado (E).
 
 Para download do arquivo executável, acesse a URL abaixo:
+
 https://lucaswmolin.com/access/destiny.php?n=838c8c4c585f40348353c97a574caa9e
