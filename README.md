@@ -48,3 +48,8 @@ O programa também mostra a quantidade total de combinações verificadas, o tem
 Para download do arquivo executável, acesse a URL abaixo:
 
 https://lucaswmolin.com/access/destiny.php?n=838c8c4c585f40348353c97a574caa9e
+
+
+
+P.S.:
+Planejo, futuramente, otimizar o código substituindo objetos por tipos primitivos e implementar uma solução semelhante ao problema da Knapsack problem.
