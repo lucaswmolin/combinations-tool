@@ -52,4 +52,4 @@ https://lucaswmolin.com/access/destiny.php?n=838c8c4c585f40348353c97a574caa9e
 
 
 P.S.:
-Planejo, futuramente, otimizar o código substituindo objetos por tipos primitivos e implementar uma solução semelhante ao problema da Knapsack problem.
+Planejo, futuramente, implementar uma solução semelhante ao 'problema da mochila' a fim de otimizar o programa.
