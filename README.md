@@ -49,4 +49,4 @@ Para download do arquivo executável, acesse a URL abaixo:
 
 https://lucaswmolin.com/access/destiny.php?n=838c8c4c585f40348353c97a574caa9e
 
-OBS: Planejo, futuramente, implementar uma solução semelhante ao 'problema da mochila' a fim de otimizar o programa. Substituir objetos por variáveis de tipo primitivo e alocar a memória estaticamente parecem opções a serem testadas também. Caso tenha alguma sugestão para melhorar a performance do programa, sinta-se à vontade para sugerir ou até mesmo implementar.
+OBS: Planejo, futuramente, otimizar o código-fonte através de programação dinâmica.
