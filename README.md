@@ -49,4 +49,4 @@ Para download do arquivo executável, acesse a URL abaixo:
 
 https://lucaswmolin.com/access/destiny.php?n=838c8c4c585f40348353c97a574caa9e
 
-OBS: Planejo, futuramente, otimizar o código-fonte através de programação dinâmica.
+OBS: Planejo, futuramente, otimizar o código-fonte através de programação dinâmica, além de outras técnicas.
